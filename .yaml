@@ -1,0 +1,17 @@
+mixed-port: 7890
+allow-lan: true
+proxies:
+  - {
+      "name": "proxy.google.com",
+      "type": "http",
+      "server": "proxy.google.com",
+      "port": 8080,
+  }
+rules:
+  - DOMAIN,time.windows.com,DIRECT
+  - IP-CIDR,10.0.0.0/8,DIRECT
+  - IP-CIDR,172.16.0.0/12,DIRECT
+  - IP-CIDR,192.168.0.0/16,DIRECT
+  - IP-CIDR,127.0.0.0/8,DIRECT
+  - GEOIP,CN,DIRECT
+  - MATCH,DIRECT
