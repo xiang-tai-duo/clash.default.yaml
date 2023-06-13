@@ -6,9 +6,25 @@ proxies:
       "type": "http",
       "server": "proxy.google.com",
       "port": 8080,
+      "username": "",
+      "password": ""
   }
+proxy-groups:
+  - name: github.com
+    type: url-test
+    proxies:
+      - 'proxy.google.com'
+    url: 'https://www.google.com'
+    interval: 600
+  - name: microsoft.com
+    type: select
+    proxies:
+      - 'proxy.google.com'
+  - name: 国内直飞
+    type: select
+    proxies:
+      - 'DIRECT'
 rules:
-  - DOMAIN,time.windows.com,DIRECT
   - IP-CIDR,10.0.0.0/8,DIRECT
   - IP-CIDR,172.16.0.0/12,DIRECT
   - IP-CIDR,192.168.0.0/16,DIRECT
