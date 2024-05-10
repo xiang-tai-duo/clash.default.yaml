@@ -2,32 +2,26 @@ mixed-port: 7890
 allow-lan: true
 proxies:
   - {
-      "name": "proxy.google.com",
+      "name": "192.168.0.1",
       "type": "http",
-      "server": "proxy.google.com",
+      "server": "192.168.0.1",
       "port": 8080,
       "username": "",
       "password": ""
   }
+
 proxy-groups:
-  - name: github.com
+  - name: default
     type: url-test
     proxies:
-      - 'proxy.google.com'
+      - '192.168.0.1'
     url: 'https://www.google.com'
     interval: 600
-  - name: microsoft.com
-    type: select
-    proxies:
-      - 'proxy.google.com'
-  - name: 国内直飞
-    type: select
-    proxies:
-      - 'DIRECT'
+
 rules:
   - IP-CIDR,10.0.0.0/8,DIRECT
   - IP-CIDR,172.16.0.0/12,DIRECT
   - IP-CIDR,192.168.0.0/16,DIRECT
   - IP-CIDR,127.0.0.0/8,DIRECT
-  - GEOIP,CN,DIRECT
-  - MATCH,DIRECT
+  - GEOIP,CN,default
+  - MATCH,default
