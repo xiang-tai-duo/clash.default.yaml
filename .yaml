@@ -11,17 +11,24 @@ proxies:
   }
 
 proxy-groups:
-  - name: default
-    type: url-test
+  - name: myProxy
+    type: url-test  # select, fallback
     proxies:
       - '192.168.0.1'
     url: 'https://www.google.com'
     interval: 600
+    strategy: round-robin # 负载均衡策略相关配置，可以是random、round-robin等
+    tolerance: 200ms # 超时容忍度，单位是毫秒
+    balance: least-conn # 负载均衡算法，可以是least-conn、random，其中least-conn是根据连接数进行分配的
 
 rules:
+  # - DOMAIN,abc,myProxy
+  # - DOMAIN-KEYWORD,abc,myProxy
+  # - DOMAIN-SUFFIX,abc,myProxy
+  # - DOMAIN-SUFFIX,abc,REJECT
   - IP-CIDR,10.0.0.0/8,DIRECT
   - IP-CIDR,172.16.0.0/12,DIRECT
   - IP-CIDR,192.168.0.0/16,DIRECT
   - IP-CIDR,127.0.0.0/8,DIRECT
-  - GEOIP,CN,default
-  - MATCH,default
+  - GEOIP,CN,DIRECT
+  - MATCH,DIRECT
