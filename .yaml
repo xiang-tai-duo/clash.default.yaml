@@ -1,15 +1,9 @@
 mixed-port: 7890
 allow-lan: true
 proxies:
-  - {
-      "name": "192.168.0.1",
-      "type": "http",
-      "server": "192.168.0.1",
-      "port": 8080,
-      "username": "",
-      "password": ""
-  }
-
+  - { "name": "192.168.0.1", "type": "http", "server": "192.168.0.1", "port": 8080, "username": "", "password": "" }
+  - { "name": "192.168.0.2", "type": "ss",   "server": "192.168.0.2", "port": 8080, "username": "", "password": "6q34vijqyhgfgqs2j8dwgjtpfejs3t92", "cipher": "aes-256-cfb" }
+  
 proxy-groups:
   - name: myProxy
     type: url-test  # select, fallback
