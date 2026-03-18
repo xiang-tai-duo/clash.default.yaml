@@ -12,7 +12,7 @@ proxy-groups:
     url: 'https://www.google.com'
     interval: 600
     strategy: round-robin # 负载均衡策略相关配置，可以是random、round-robin等
-    tolerance: 200ms # 超时容忍度，单位是毫秒
+    tolerance: 200 # 超时容忍度，单位是毫秒
     balance: least-conn # 负载均衡算法，可以是least-conn、random，其中least-conn是根据连接数进行分配的
 
 rules:
